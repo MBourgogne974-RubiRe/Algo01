@@ -1,33 +1,78 @@
+using TreeEditor;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject mob;
+    public GameObject cube;
 
-    public KeyCode sp = KeyCode.M;
+    public int bon = Random.Range(0,10);
 
     public int instant;
 
     void Start()
     {
-        instant = 0;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(sp))
+        bon = Random.Range(0, 10);
+        if (bon > 0)
         {
-            //Instantiate(mob, new Vector3(5, 1.5f, instant), Quaternion.identity);
-            // instant += 1;
-           /*Instantiate(mob, new Vector3(0, 0, 0), Quaternion.identity);
-            Instantiate(mob, new Vector3(1, 0, 0), Quaternion.identity);
-            Instantiate(mob, new Vector3(2, 0, 0), Quaternion.identity);*/
 
-            for(int i = 0; i < 100; i++)
+            //sol
+            for (float i = 0f; i < 50f; i++)
             {
-                Instantiate(mob, new Vector3(15, 15, 15)* i, Quaternion.identity);
+                for (float j = 0f; j < 50f; j++)
+                { 
+                    float PerlinY = Mathf.PerlinNoise(i * 0.05f, j * 0.05f) * 3;
+                    Instantiate(cube, new Vector3(j, PerlinY, i), Quaternion.identity);
+
+                }
             }
+
+            //variatobn bloc
+           
+
+
+            //mur en x et Y
+            
+            for (int x = 0; x < 50; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Instantiate(cube, new Vector3(x, y, 0), Quaternion.identity);
+                }
+            }
+            for (int x = 0; x < 50; x++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Instantiate(cube, new Vector3(x, y, 49), Quaternion.identity);
+                }
+            }
+
+
+            //mur en Z et Y
+            for (int z = 0; z < 50; z++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Instantiate(cube, new Vector3(0, y, z), Quaternion.identity);
+                }
+            }
+            for (int z = 0; z < 50; z++)
+            {
+                for (int y = 0; y < 15; y++)
+                {
+                    Instantiate(cube, new Vector3(49, y, z), Quaternion.identity);
+                }
+            }
+            
+
         }
+        if (bon == 0)
+        {
+
+        }
+
+    
+
     }
 }

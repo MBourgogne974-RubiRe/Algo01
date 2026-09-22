@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Tourne : MonoBehaviour
+public class Tourner : MonoBehaviour
 {
 
     private void Awake()
